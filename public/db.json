@@ -2,7 +2,7 @@
     "Crypto Name":"Bitcoin",
     "Short Code": "BTC",
     "Price": "$3751.31",
-    "Date": "5-1-2022",
+    "Date": "5-01-2022",
     "URL":"https://bitcoin.org/en/"
   
   },
@@ -10,27 +10,27 @@
     "Crypto Name":"Dogecoin",
     "Short Code": "DOGE",
     "Price":"$0.131964",
-    "Date": "5-1-2022",
+    "Date": "5-01-2022",
     "URL":"https://dogecoin.com/"
   },
   {
     "Crypto Name":"Ethereum",
     "Short Code": "ETH",
     "Price": "$2765.51",
-    "Date": "5-1-2022",
+    "Date": "5-01-2022",
     "URL":"https://ethereum.org/en/"
   },
   {
     "Crypto Name":"Litecoin",
     "Short Code": "LTC",
     "Price": "$96.83",
-    "Date": "5-1-2022",
+    "Date": "5-01-2022",
     "URL":"https://litecoin.org/"
   },
   {
     "Crypto Name":"Solana",
     "Short Code": "SOL",
     "Price": "$89.14",
-    "Date": "5-1-2022",
+    "Date": "5-01-2022",
     "URL":"https://solana.com/"
   }]}
