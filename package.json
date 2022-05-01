@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "dev": "nodemon index",
+    "start": "node index"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "name": "nodeserver",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}
