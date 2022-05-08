@@ -1,52 +1,48 @@
-const http = require("http");
-const path = require("path");
-const fs = require("fs");
+let express = require('express'),
+  cors = require('cors'),
+  mongoose = require('mongoose'),
+  database = require('./database'),
+  mongo = require('mongodb'),
+  bodyParser = require('body-parser');
 
-const server = http.createServer((req, res) => {
-    
+// Connect mongo
+mongoose.Promise = global.Promise;
+mongoose.connect(database.db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Database connected")
+  },
+  error => {
+    console.log("Database could't be connected to: " + error)
+  }
+)
 
-    
-    
-    if (req.url === '/') {
-        // read public.html file from public folder
-        fs.readFile(path.join(__dirname, 'public', 'index.html'),
-                    (err, content) => {
-                                    
-                                    if (err) throw err;
-                                    res.writeHead(200, { 'Content-Type': 'text/html' });
-                                    res.end(content);
-                        }
-              );
-     }
 
- 
-    else if (req.url==='/api')
-    {
-        fs.readFile(
-            path.join(__dirname, 'public', 'db.json'),'utf-8',
-                    (err, content) => {
-                                    
-                                    if (err) throw err;
-                                    // Please note the content-type here is application/json
-                                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                                    res.end(content);
-                        }
-              );
-    }
-    else{
-        res.end("<h1> 404 nothing is here</h1>");
-    }
+const houseAPI = require('./routes/house.route')
+const header = {
+  origin:'*'
+};
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(cors(header));
+app.use(cors({
+  methods: ['GET']
+}));
 
-    /*
+// API
+app.use('/api', houseAPI)
 
-        But what if we have  1000 pages/urls ? do we need to write 1000 if-else statements?
+// Create port
+const port = process.env.PORT || 4000;
+const server = app.listen(port, () => {
+  console.log('Connected to port ' + port)
+})
+app.use(express.static('public'));
 
-    /*/
-});
-
-// it will first try to look for
-// environment variable, if not found then go for 5959
-const PORT= process.env.PORT || 5959;
-
-// port, callback
-server.listen(PORT,()=> console.log(`Great our server is running on port ${PORT} `));
+app.get('/index',function(req,res) {
+    res.sendFile(__dirname + '/public/index.html');
+  });
